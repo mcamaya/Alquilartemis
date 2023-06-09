@@ -36,14 +36,11 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        <!-- <tr>
                           <th scope="row">1</th>
                           <td>Mark</td>
                           <td>Otto</td>
                           <td>@mdo</td>
-                          <td><button type="button" class="btn btn-warning"><a href="#">Editar</a></button></td>
-                            <td><button type="button" class="btn btn-danger"><a href="#">Borrar</a></button></td>
-                          
                         </tr>
                         <tr>
                           <th scope="row">2</th>
@@ -55,7 +52,7 @@
                           <th scope="row">3</th>
                           <td colspan="2">Larry the Bird</td>
                           <td>@twitter</td>
-                        </tr>
+                        </tr> -->
                       </tbody>
                 </table>
 
@@ -69,20 +66,23 @@
                       <div class="modal-body">
 
                         <form method="post" action="">
-                          <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                          </div>
-                          <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                          </div>
-                          <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="ejemplo@campuslands.com">
+                        <div id="emailHelp" class="form-text">No compartiremos tu email con nadie</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="celular" class="form-label">Celular</label>
+                            <input type="number" class="form-control" id="celular" name="celular">
+                        </div>
                         </form>
 
                       </div>

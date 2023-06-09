@@ -18,3 +18,8 @@
 .indices li {
     list-style-type: none;
 }
+
+button a {
+    text-decoration: none;
+    color: aliceblue;
+}

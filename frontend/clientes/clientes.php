@@ -1,11 +1,19 @@
+<?php
+require_once 'conectarClientes.php';
+$clientes = new Cliente();
+$allClientes = $clientes->obtainAll();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alquilartemis</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Clientes Alquilartemis</title>
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
@@ -28,34 +36,31 @@
                     <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">NIT</th>
+                          <th scope="col">Representante</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Teléfono</th>
                           <th scope="col">Editar</th>
                           <th scope="col">Borrar</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                          <td><button type="button" class="btn btn-warning"><a href="#">Editar</a></button></td>
+                        <?php foreach($allClientes as $cliente): ?>
+
+                          <tr>
+                            <td><?=$cliente['id_constructora']?></td>
+                            <td><?=$cliente['nombre_constructora']?></td>
+                            <td><?=$cliente['nit_constructora']?></td>
+                            <td><?=$cliente['nombre_representante']?></td>
+                            <td><?=$cliente['email_contacto']?></td>
+                            <td><?=$cliente['telefono_contacto']?></td>
+                            <td><button type="button" class="btn btn-warning"><a href="#">Editar</a></button></td>
                             <td><button type="button" class="btn btn-danger"><a href="#">Borrar</a></button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td colspan="2">Larry the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
+                          </tr>
+                        
+                        <?php endforeach; ?>
+
                       </tbody>
                 </table>
 
@@ -68,27 +73,30 @@
                       </div>
                       <div class="modal-body">
 
-                        <form method="post" action="">
+                        <form method="post" action="agregar.php">
                           <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                              <label for="nombre" class="form-label">Nombre</label>
+                              <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp">
                           </div>
                           <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                              <label for="nit" class="form-label">NIT</label>
+                              <input type="number" class="form-control" id="nit" name="nit" aria-describedby="emailHelp">
                           </div>
-                          <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                          <div class="mb-3">
+                              <label for="representante" class="form-label">Representante</label>
+                              <input type="text" class="form-control" id="representante" name="representante" aria-describedby="emailHelp">
                           </div>
-                          <button type="submit" class="btn btn-primary">Submit</button>
+                          <div class="mb-3">
+                              <label for="email" class="form-label">Email</label>
+                              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                          </div>
+                          <div class="mb-3">
+                              <label for="celular" class="form-label">Celular</label>
+                              <input type="number" class="form-control" id="celular" name="celular">
+                          </div>
+                          <button type="submit" name="registrar" class="btn btn-primary">Save changes</button>
                         </form>
 
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                       </div>
                     </div>
                   </div>
