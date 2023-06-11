@@ -79,4 +79,34 @@ class Cliente extends Conectar{
             return $e->getMessage();
         }
     }
+
+    public function obtainOne(){
+        try {
+            $stm = $this->dbCnx->prepare("SELECT * FROM constructoras WHERE id_constructora = ?");
+            $stm->execute([$this->id]);
+            return $stm->fetchAll();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function update(){
+        try {
+            $stm = $this->dbCnx->prepare("UPDATE constructoras SET nombre_constructora = ?, nit_constructora = ?, nombre_representante = ?, email_contacto = ?, telefono_contacto = ? WHERE id_constructora = ?");
+            $stm->execute([$this->nombre, $this->nit, $this->representante, $this->email, $this->telefono, $this->id]);
+            return $stm->fetchAll();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function delete(){
+        try {
+            $stm = $this->dbCnx->prepare("DELETE FROM constructoras WHERE id_constructora = ?");
+            $stm -> execute([$this->id]);
+            return $stm->fetchAll();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

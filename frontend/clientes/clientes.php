@@ -55,8 +55,8 @@ $allClientes = $clientes->obtainAll();
                             <td><?=$cliente['nombre_representante']?></td>
                             <td><?=$cliente['email_contacto']?></td>
                             <td><?=$cliente['telefono_contacto']?></td>
-                            <td><button type="button" class="btn btn-warning"><a href="#">Editar</a></button></td>
-                            <td><button type="button" class="btn btn-danger"><a href="#">Borrar</a></button></td>
+                            <td><button type="button" class="btn btn-warning"><a href="editar.php?id=<?=$cliente['id_constructora']?>">Editar</a></button></td>
+                            <td><button type="button" class="btn btn-danger"><a href="borrar.php?id=<?=$cliente['id_constructora']?>&req=delete">Borrar</a></button></td>
                           </tr>
                         
                         <?php endforeach; ?>
@@ -76,23 +76,23 @@ $allClientes = $clientes->obtainAll();
                         <form method="post" action="agregar.php">
                           <div class="mb-3">
                               <label for="nombre" class="form-label">Nombre</label>
-                              <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp">
+                              <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp" required>
                           </div>
                           <div class="mb-3">
                               <label for="nit" class="form-label">NIT</label>
-                              <input type="number" class="form-control" id="nit" name="nit" aria-describedby="emailHelp">
+                              <input type="number" class="form-control" id="nit" name="nit" aria-describedby="emailHelp" required>
                           </div>
                           <div class="mb-3">
                               <label for="representante" class="form-label">Representante</label>
-                              <input type="text" class="form-control" id="representante" name="representante" aria-describedby="emailHelp">
+                              <input type="text" class="form-control" id="representante" name="representante" aria-describedby="emailHelp" required>
                           </div>
                           <div class="mb-3">
                               <label for="email" class="form-label">Email</label>
-                              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
                           </div>
                           <div class="mb-3">
                               <label for="celular" class="form-label">Celular</label>
-                              <input type="number" class="form-control" id="celular" name="celular">
+                              <input type="number" class="form-control" id="celular" name="celular" required>
                           </div>
                           <button type="submit" name="registrar" class="btn btn-primary">Save changes</button>
                         </form>
