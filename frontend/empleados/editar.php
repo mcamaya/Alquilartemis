@@ -1,8 +1,8 @@
 <?php
 
-require_once 'conectarClientes.php';
+require_once 'conectarEmpleados.php';
 $id = $_GET['id'];
-$data = new Cliente();
+$data = new Empleado();
 $data->setId($id);
 
 $record = $data->obtainOne();
@@ -10,14 +10,18 @@ $val = $record[0];
 
 
 if(isset($_POST['editar'])){
+
     $data->setNombre($_POST['nombre']);
-    $data->setNIT($_POST['nit']);
-    $data->setRepresentante($_POST['representante']);
     $data->setEmail($_POST['email']);
     $data->setTelefono($_POST['celular']);
-
-		$data->update();
-		echo "<script>alert('Datos actualizados con éxito'); document.location='clientes.php'</script>";
+		
+		if(!empty($_POST['password'])){
+			$data->setPassword($_POST['password']);
+			$data->updateWithPass();
+		} else {
+			$data->updateNoPass();
+		}
+		echo "<script>alert('Datos actualizados con éxito'); document.location='empleados.php'</script>";
 }
 
 ?>
@@ -49,27 +53,23 @@ if(isset($_POST['editar'])){
               <h2 class="mb-4">Editar Registro</h2>
 
               <form method="post">
-              	<div class="mb-3">
-									<label for="nombre" class="form-label">Nombre</label>
-									<input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp" value="<?=$val['nombre_constructora']?>" required>
-                </div>
-                <div class="mb-3">
-									<label for="nit" class="form-label">NIT</label>
-									<input type="number" class="form-control" id="nit" name="nit" aria-describedby="emailHelp" value="<?=$val['nit_constructora']?>" required>
-                </div>
-                <div class="mb-3">
-									<label for="representante" class="form-label">Representante</label>
-									<input type="text" class="form-control" id="representante" name="representante" aria-describedby="emailHelp" value="<?=$val['nombre_representante']?>" required>
-                </div>
-                <div class="mb-3">
-									<label for="email" class="form-label">Email</label>
-									<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="<?=$val['email_contacto']?>" required>
-                </div>
-                <div class="mb-3">
-									<label for="celular" class="form-label">Celular</label>
-									<input type="number" class="form-control" id="celular" name="celular" value="<?=$val['telefono_contacto']?>" required>
-                </div>
-                <button type="submit" class="btn btn-primary" name="editar">Actualizar</button>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp" value="<?=$val['nombre_empleado']?>" required>
+							</div>
+							<div class="mb-3">
+								<label for="email" class="form-label">Email</label>
+								<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="<?=$val['email_empleado']?>" required>
+							</div>
+							<div class="mb-3">
+								<label for="password" class="form-label">Password</label>
+								<input type="password" class="form-control" id="password" name="password">
+							</div>
+							<div class="mb-3">
+								<label for="celular" class="form-label">Celular</label>
+								<input type="number" class="form-control" id="celular" name="celular" value="<?=$val['celular_empleado']?>" required>
+							</div>
+									<button type="submit" class="btn btn-primary" name="editar">Actualizar</button>
               </form>
 
             </div>
