@@ -1,3 +1,10 @@
+<?php
+require_once 'conectarProductos.php';
+require_once '../categorias/conectarCategorias.php';
+$categorias = new Categoria();
+$allCategorias = $categorias->obtainAll();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +25,7 @@
                 <li class="my-2 fs-5"><a href="../empleados/empleados.php"><i class="bi bi-person-fill mx-3"></i>Empleados</a></li>
                 <li class="my-2 fs-5"><a href="../clientes/clientes.php"><i class="bi bi-cone-striped mx-3"></i> Clientes</a></li>
                 <li class="my-2 fs-5"><a href="../productos/productos.php"><i class="bi bi-hammer mx-3"></i>Productos</a></li>
+                <li class="my-2 fs-5"><a href="../categorias/categorias.php"><i class="bi bi-bookmarks-fill"></i>Categorias</a></li>
                 <li class="my-2 fs-5"><a href="../cotizaciones/cotizaciones.php"><i class="bi bi-receipt-cutoff mx-3"></i>Cotizaciones</a></li>
             </ul>
           </div>
@@ -34,7 +42,6 @@
                           <th scope="col">Nombre</th>
                           <th scope="col">Precio</th>
                           <th scope="col">Categoría</th>
-                          <th scope="col">Garantía</th>
                           <th scope="col">Editar</th>
                           <th scope="col">Borrar</th>
                         </tr>
@@ -64,7 +71,13 @@
                           </div>
                           <div class="mb-3">
                             <label for="categoria" class="form-label">Categoría</label>
-                            <input type="text" class="form-control" id="categoria" name="categoria">
+                            <select class="form-control" name="categoria" id="categoria" required>
+                            <option value="select">Seleccione la categoría</option>
+
+                            <?php foreach($allCategorias as $ctg):?>
+                            <option name="id_ctg" value="<?=$ctg['id_categoria'];?>"><?=$ctg['nombre_categoria']?></option>
+                            <?php endforeach; ?>
+
                           </div>
                           <button type="submit" class="btn btn-primary" name="registrar">Guardar</button>
                         </form>
