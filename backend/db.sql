@@ -33,12 +33,17 @@ CREATE TABLE productos(
     FOREIGN KEY (categoria_producto) REFERENCES categorias(id_categoria)
 );
 
-
-CREATE TABLE detalle_cotizacion(
-    id_detalle INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE cotizaciones(
+    id_cotizacion INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_empleado INT NOT NULL,
+    fk_id_constructora INT NOT NULL,
     fecha_cotizacion DATE NOT NULL,
     hora_cotizacion VARCHAR(20) NOT NULL,
-    dia_alquiler VARCHAR(55) NOT NULL
+    dia_alquiler VARCHAR(55) NOT NULL,
+    duracion_alquiler INT NOT NULL,
+
+    FOREIGN KEY (fk_id_empleado) REFERENCES empleados(id_empleado),
+    FOREIGN KEY (fk_id_constructora) REFERENCES constructoras(id_constructora)
 );
 
 CREATE TABLE productos_x_cotizaciones(
@@ -47,16 +52,5 @@ CREATE TABLE productos_x_cotizaciones(
     fk_id_detalle INT NOT NULL,
 
     FOREIGN KEY (fk_id_producto) REFERENCES productos(id_producto),
-    FOREIGN KEY (fk_id_detalle) REFERENCES detalle_cotizacion(id_detalle)
-);
-
-CREATE TABLE cotizaciones(
-    id_cotizacion INT PRIMARY KEY AUTO_INCREMENT,
-    fk_id_empleado INT NOT NULL,
-    fk_id_constructora INT NOT NULL,
-    fk_id_detalle INT NOT NULL,
-
-    FOREIGN KEY (fk_id_empleado) REFERENCES empleados(id_empleado),
-    FOREIGN KEY (fk_id_constructora) REFERENCES constructoras(id_constructora),
-    FOREIGN KEY (fk_id_detalle) REFERENCES detalle_cotizacion(id_detalle)
+    FOREIGN KEY (fk_id_detalle) REFERENCES cotizaciones(id_cotizacion)
 );

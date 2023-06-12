@@ -47,8 +47,8 @@ class Producto extends Conectar{
 
     public function insertData(){
         try {
-            $stm = $this->dbCnx->prepare("INSERT INTO productos(nombre_producto, precio_x_dia, categoria_producto) values(?,?,?) ");
-            $stm->execute([$this->nombre, $this->email, $this->telefono, MD5($this->password)]);
+            $stm = $this->dbCnx->prepare("INSERT INTO productos(nombre_producto, precio_x_dia, categoria_producto) values(?,?,?)");
+            $stm->execute([$this->nombre, $this->precio, $this->categoria]);
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -56,7 +56,20 @@ class Producto extends Conectar{
 
     public function obtainAll(){
         try {
-            $stm = $this->dbCnx->prepare("SELECT * FROM empleados");
+            $stm = $this->dbCnx->prepare("SELECT * FROM productos");
+            $stm->execute();
+            return $stm->fetchAll();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function obtainAll_innerJoin(){
+        try {
+            $stm = $this->dbCnx->prepare("
+            SELECT productos.id_producto, productos.nombre_producto, productos.precio_x_dia, categorias.nombre_categoria FROM productos
+            INNER JOIN categorias ON productos.categoria_producto = categorias.id_categoria
+            ");
             $stm->execute();
             return $stm->fetchAll();
         } catch (Exception $e) {
@@ -66,7 +79,7 @@ class Producto extends Conectar{
 
     public function obtainOne(){
         try {
-            $stm = $this->dbCnx->prepare("SELECT * FROM empleados WHERE id_empleado = ?");
+            $stm = $this->dbCnx->prepare("SELECT * FROM productos WHERE id_producto = ?");
             $stm->execute([$this->id]);
             return $stm->fetchAll();
         } catch (Exception $e) {
@@ -76,8 +89,8 @@ class Producto extends Conectar{
 
     public function update(){
         try {
-            $stm = $this->dbCnx->prepare("UPDATE empleados SET nombre_empleado = ?, email_empleado = ?, celular_empleado = ?  WHERE id_empleado = ?");
-            $stm->execute([$this->nombre, $this->email, $this->telefono, $this->id]);
+            $stm = $this->dbCnx->prepare("UPDATE productos SET nombre_producto = ?, precio_x_dia = ?, categoria_producto = ?  WHERE id_producto = ?");
+            $stm->execute([$this->nombre, $this->precio, $this->categoria, $this->id]);
             return $stm->fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();
@@ -86,7 +99,7 @@ class Producto extends Conectar{
 
     public function delete(){
         try {
-            $stm = $this->dbCnx->prepare("DELETE FROM empleados WHERE id_empleado = ?");
+            $stm = $this->dbCnx->prepare("DELETE FROM productos WHERE id_producto = ?");
             $stm -> execute([$this->id]);
             return $stm->fetchAll();
         } catch (Exception $e) {
