@@ -17,11 +17,20 @@ CREATE TABLE empleados(
     password_empleado VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE categorias(
+    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_categoria VARCHAR(100) NOT NULL,
+    descripcion_categoria VARCHAR(255) NOT NULL,
+    img_categoria VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE productos(
     id_producto INT PRIMARY KEY AUTO_INCREMENT,
     nombre_producto VARCHAR(120) NOT NULL,
     precio_x_dia INT NOT NULL,
-    categoria_producto VARCHAR(50)
+    categoria_producto VARCHAR(50),
+
+    FOREIGN KEY (categoria_producto) REFERENCES categorias(id_categoria)
 );
 
 

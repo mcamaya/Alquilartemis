@@ -1,10 +1,16 @@
+<?php
+require_once 'conectarCategorias.php';
+$data = new Categoria();
+$allCategorias = $data->obtainAll();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos | Alquilartemis</title>
+    <title>Alquilartemis</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -24,7 +30,7 @@
     
             <div class="col-8 bg-light h-100 rounded px-5 py-4 d-flex flex-column">
               <div class="d-flex justify-content-between mb-2">
-                <h2>Productos</h2>
+                <h2>Categorías</h2>
                 <button type="button" class="btn btn-dark mb-4" data-bs-toggle="modal" data-bs-target="#registro">Añadir Nuevo Registro</button>
               </div>
               <table class="table table-striped">
@@ -32,15 +38,28 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Nombre</th>
-                          <th scope="col">Precio</th>
-                          <th scope="col">Categoría</th>
-                          <th scope="col">Garantía</th>
+                          <th scope="col">Descripción</th>
+                          <th scope="col">Imagen</th>
                           <th scope="col">Editar</th>
                           <th scope="col">Borrar</th>
                         </tr>
                       </thead>
                       <tbody>
                         
+                        <?php foreach ($allCategorias as $ctg): ?>
+
+												<tr>
+													<td><?=$ctg['id_categoria']?></td>
+													<td><?=$ctg['nombre_categoria']?></td>
+													<td><?=$ctg['descripcion_categoria']?></td>
+													<td><img class="table-img" src="<?=$ctg['img_categoria']?>" alt="img"></td>
+													<td><button type="button" class="btn btn-warning"><a href="editar.php?id=<?=$ctg['id_categoria']?>">Editar</a></button></td>
+                          <td><button type="button" class="btn btn-danger"><a href="borrar.php?id=<?=$ctg['id_categoria']?>&req=delete">Borrar</a></button></td>
+                        </tr>
+
+                      <?php endforeach; ?>
+                        
+
                       </tbody>
                 </table>
 
@@ -53,18 +72,18 @@
                       </div>
                       <div class="modal-body">
 
-                        <form method="post" action="guardar.php">
+                        <form enctype="multipart/form-data" method="post" action="agregar.php">
                           <div class="mb-3">
-                            <label for="nombre-producto" class="form-label">Nombre Producto</label>
-                            <input type="text" class="form-control" id="nombre-producto" aria-describedby="emailHelp" name="nombre">
+                            <label for="nombre" class="form-label">Nombre Categoría</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp"  required>
                           </div>
                           <div class="mb-3">
-                            <label for="precio" class="form-label">Precio por día</label>
-                            <input type="number" class="form-control" id="precio" name="precio">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="descripcion" name="descripcion" required>
                           </div>
                           <div class="mb-3">
-                            <label for="categoria" class="form-label">Categoría</label>
-                            <input type="text" class="form-control" id="categoria" name="categoria">
+                            <label for="imagen" class="form-label">Imagen</label>
+                            <input type="file" class="form-control" id="imagen" name="imagen" required>
                           </div>
                           <button type="submit" class="btn btn-primary" name="registrar">Guardar</button>
                         </form>
