@@ -24,6 +24,13 @@ CREATE TABLE categorias(
     img_categoria VARCHAR(100) NOT NULL
 );
 
+CREATE TABLE productos(
+    id_producto INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_producto VARCHAR(120) NOT NULL,
+    precio_x_dia INT NOT NULL,
+    categoria_producto INT NOT NULL
+);
+
 
 CREATE TABLE cotizaciones(
     id_cotizacion INT PRIMARY KEY AUTO_INCREMENT,
@@ -60,3 +67,11 @@ SELECT * FROM `productos_x_cotizaciones` WHERE 1
 SELECT * FROM (SELECT productos_x_cotizaciones.fk_id_producto, productos_x_cotizaciones.fk_id_detalle, productos.nombre_producto FROM productos_x_cotizaciones
 INNER JOIN productos ON productos_x_cotizaciones.fk_id_producto = productos.id_producto) AS resultado WHERE fk_id_detalle = 1;
 
+/* INSERTAR ELEMENTOS DEFAULT */
+INSERT INTO `empleados` (`id_empleado`, `nombre_empleado`, `email_empleado`, `celular_empleado`, `password_empleado`) VALUES ('1', 'Esteban Quito', 'estebanquito@mail.com', '311254698', '123'), ('2', 'Verónica Vargas', 'verovargas@mail.com', '317452010', '123'), ('3', 'Mariano Pedraza', 'marianopedraza@mail.com', '316229941', '123');
+
+INSERT INTO `constructoras` (`id_constructora`, `nombre_constructora`, `nit_constructora`, `nombre_representante`, `email_contacto`, `telefono_contacto`) VALUES ('1', 'Omega CORP S.A.S', '564856156', 'Fransisco Pérez', 'omega@corp.com', '01456156'), ('2', 'Tríade Constructura S.A.S', '564874578', 'Lucía Bejarano', 'triade@construct.com', '05615665'), ('3', 'Jet Constructora S.A.S', '484156564', 'Pedro Solano', 'jet@constructoras.com', '584653186');
+
+INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`, `img_categoria`) VALUES ('1', 'Herramientas', 'Herramientas inalámbricas y para talleres. Diseño pionero, tecnología y alta durabilidad.', ''), ('2', 'Materia Prima', 'Compra en línea Materiales de Construcción, la Tienda con los mejores precios con envío gratis o retiro en tienda. ', ''), ('3', 'Acero', 'Encuentra los materiales que necesitas para tu proyecto de construcción. Contamos con una amplia variedad de productos de gran calidad.', '');
+
+INSERT INTO `productos` (`id_producto`, `nombre_producto`, `precio_x_dia`, `categoria_producto`) VALUES ('1', 'Serruchos', '50000', '1'), ('2', 'Bulto Cemento', '350000', '2'), ('3', 'Varillas', '120000', '3');

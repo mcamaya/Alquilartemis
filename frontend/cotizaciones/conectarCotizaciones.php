@@ -98,6 +98,19 @@ class Cotizacion extends Conectar{
         }
     }
 
+    public function obtainProductos(){
+        try {
+            $stm = $this->dbCnx->prepare("
+            SELECT * FROM (SELECT productos_x_cotizaciones.fk_id_producto, productos_x_cotizaciones.fk_id_detalle, productos.nombre_producto, productos.precio_x_dia FROM productos_x_cotizaciones
+            INNER JOIN productos ON productos_x_cotizaciones.fk_id_producto = productos.id_producto) AS resultado WHERE fk_id_detalle = ?
+            ");
+            $stm->execute([$this->id]);
+            return $stm->fetchAll();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function delete(){
         try {
             $stm = $this->dbCnx->prepare("DELETE FROM cotizaciones WHERE id_cotizacion = ?");

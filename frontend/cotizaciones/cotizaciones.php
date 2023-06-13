@@ -12,6 +12,12 @@ $allEmpleados = $empleados->obtainAll();
 $cotizaciones = new Cotizacion();
 $allCotizaciones = $cotizaciones->obtainAll_innerJoin();
 
+$obtenerProductos = new Cotizacion();
+/* $obtenerProductos->setId(1);
+$registroPrd = $obtenerProductos->obtainProductos(); */
+/* echo "<pre>";
+var_dump($data);
+die(); */
 
 ?>
 <!DOCTYPE html>
@@ -59,6 +65,11 @@ $allCotizaciones = $cotizaciones->obtainAll_innerJoin();
                       <tbody>
 
                         <?php foreach($allCotizaciones as $coti): ?>
+                          <?php 
+                          $obtenerProductos->setId($coti['id_cotizacion']);
+                          $registroPrd = $obtenerProductos->obtainProductos(); 
+                          ?>
+
                         <tr>
                           <td colspan="6">
                             <div class="accordion" id="accordionExample">
@@ -82,12 +93,31 @@ $allCotizaciones = $cotizaciones->obtainAll_innerJoin();
                                           <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">NOMBRE</th>
-                                            <th scope="col">PRECIO TOTAL</th>
+                                            <th scope="col">PRECIO</th>
                                           </tr>
                                         </thead>
                                         <tbody>
+
+                                        <?php
+                                          $sumaTotal = 0;
+                                          foreach($registroPrd as $prd): 
+                                          $sumaTotal += $prd['precio_x_dia'];
+                                          ?>
+
+                                          <tr>
+                                            <td><?=$prd['fk_id_producto']?></td>
+                                            <td><?=$prd['nombre_producto']?></td>
+                                            <td><?=$prd['precio_x_dia']?></td>
+                                          </tr>
+
+                                          <?php endforeach; ?>
                                           
                                         </tbody>
+                                        <tr>
+                                          <td></td>
+                                          <td>TOTAL</td>
+                                          <td>$<?=$sumaTotal?></td>
+                                        </tr>
                                       </table>
 
                                     </div>
