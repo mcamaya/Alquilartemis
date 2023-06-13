@@ -43,7 +43,7 @@ $allCotizaciones = $cotizaciones->obtainAll_innerJoin();
               <div class="d-flex justify-content-between mb-2">
                 <h2>Cotizaciones</h2>
                 <button type="button" class="btn btn-dark mb-4" data-bs-toggle="modal" data-bs-target="#registro">Nueva Cotización</button>
-                <button type="button" class="btn btn-primary mb-4"><a href="#">Añadir productos</a></button>
+                <button type="button" class="btn btn-primary mb-4"><a href="../prd_x_ctz/productosCotizaciones.php">Añadir productos</a></button>
               </div>
               <table class="table table-striped">
                     <thead>

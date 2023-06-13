@@ -24,14 +24,6 @@ CREATE TABLE categorias(
     img_categoria VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE productos(
-    id_producto INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_producto VARCHAR(120) NOT NULL,
-    precio_x_dia INT NOT NULL,
-    categoria_producto VARCHAR(50),
-
-    FOREIGN KEY (categoria_producto) REFERENCES categorias(id_categoria)
-);
 
 CREATE TABLE cotizaciones(
     id_cotizacion INT PRIMARY KEY AUTO_INCREMENT,
@@ -54,3 +46,17 @@ CREATE TABLE productos_x_cotizaciones(
     FOREIGN KEY (fk_id_producto) REFERENCES productos(id_producto),
     FOREIGN KEY (fk_id_detalle) REFERENCES cotizaciones(id_cotizacion)
 );
+
+
+INNER JOIN productos ON productos_x_cotizaciones.fk_id_producto = productos.id_producto;
+SELECT * FROM productos_x_cotizaciones WHERE fk_id_detalle = cotizaciones(id_detalle); 
+
+SELECT productos_x_cotizaciones.fk_id_producto, productos_x_cotizaciones.fk_id_detalle, productos.nombre_producto FROM productos_x_cotizaciones
+INNER JOIN productos ON productos_x_cotizaciones.fk_id_producto = productos.id_producto;
+
+SELECT * FROM `productos_x_cotizaciones` WHERE 1
+
+
+SELECT * FROM (SELECT productos_x_cotizaciones.fk_id_producto, productos_x_cotizaciones.fk_id_detalle, productos.nombre_producto FROM productos_x_cotizaciones
+INNER JOIN productos ON productos_x_cotizaciones.fk_id_producto = productos.id_producto) AS resultado WHERE fk_id_detalle = 1;
+
