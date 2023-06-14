@@ -70,12 +70,12 @@ die(); */
                           $registroPrd = $obtenerProductos->obtainProductos(); 
                           ?>
 
-<tr>
-  <td colspan="6">
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo<?=$coti['id_cotizacion']?>" aria-expanded="false" aria-controls="collapseTwo">
+                        <tr>
+                          <td colspan="6">
+                            <div class="accordion" id="accordionExample">
+                              <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo<?=$coti['id_cotizacion']?>" aria-expanded="false" aria-controls="collapseTwo">
                                     [ <?=$coti['id_cotizacion']?> ]---[ <?=$coti['nombre_constructora']?> ]---[ <?=$coti['nombre_empleado']?> ] 
                                   </button>
                                 </h2>

@@ -10,12 +10,12 @@
       crossorigin="anonymous"
     />
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
     * {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
     }
 
     </style>
