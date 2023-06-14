@@ -113,8 +113,11 @@ class Cotizacion extends Conectar{
 
     public function delete(){
         try {
-            $stm = $this->dbCnx->prepare("DELETE FROM cotizaciones WHERE id_cotizacion = ?");
-            $stm -> execute([$this->id]);
+            $stm = $this->dbCnx->prepare("
+            DELETE FROM productos_x_cotizaciones WHERE fk_id_detalle = ?;
+            DELETE FROM cotizaciones WHERE id_cotizacion = ?
+            ");
+            $stm -> execute([$this->id, $this->id]);
             return $stm->fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();

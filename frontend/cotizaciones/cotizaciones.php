@@ -70,12 +70,12 @@ die(); */
                           $registroPrd = $obtenerProductos->obtainProductos(); 
                           ?>
 
-                        <tr>
-                          <td colspan="6">
-                            <div class="accordion" id="accordionExample">
-                              <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo<?=$coti['id_cotizacion']?>" aria-expanded="false" aria-controls="collapseTwo">
+<tr>
+  <td colspan="6">
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo<?=$coti['id_cotizacion']?>" aria-expanded="false" aria-controls="collapseTwo">
                                     [ <?=$coti['id_cotizacion']?> ]---[ <?=$coti['nombre_constructora']?> ]---[ <?=$coti['nombre_empleado']?> ] 
                                   </button>
                                 </h2>
@@ -86,15 +86,15 @@ die(); */
                                       <strong>Hora: </strong> <?=$coti['hora_cotizacion']?> <br>
                                       <strong>Día alquiler: </strong> <?=$coti['dia_alquiler']?> <br>
                                       <strong>Duración: </strong> <?=$coti['duracion_alquiler']?> <br>
+                                      <button type="button" class="btn btn-danger mt-5 ms-1"><a href="borrar.php?id=<?=$coti['id_cotizacion']?>&req=delete">Borrar</a></button>
+                                      <button type="button" class="btn btn-warning mt-5 ms-1"><a href="../../mpdf/cotizacion.php">Generar PDF</a></button>
                                     </div>
                                     <div class="me-4">
                                       <table class="table">
                                         <thead>
-                                          <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">NOMBRE</th>
                                             <th scope="col">PRECIO</th>
-                                          </tr>
                                         </thead>
                                         <tbody>
 
@@ -107,7 +107,7 @@ die(); */
                                           <tr>
                                             <td><?=$prd['fk_id_producto']?></td>
                                             <td><?=$prd['nombre_producto']?></td>
-                                            <td><?=$prd['precio_x_dia']?></td>
+                                            <td>$<?=$prd['precio_x_dia']?></td>
                                           </tr>
 
                                           <?php endforeach; ?>
@@ -115,14 +115,13 @@ die(); */
                                         </tbody>
                                         <tr>
                                           <td></td>
-                                          <td>TOTAL</td>
-                                          <td>$<?=$sumaTotal?></td>
+                                          <th>TOTAL</th>
+                                          <th>$<?=$sumaTotal?></th>
                                         </tr>
                                       </table>
 
                                     </div>
                                   </div>
-                                  <button type="button" class="btn btn-danger m-4"><a href="borrar.php?id=<?=$coti['id_cotizacion']?>&req=delete">Borrar</a></button>
                                 </div>
                               </div>
                             </div>

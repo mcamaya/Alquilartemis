@@ -28,7 +28,9 @@ CREATE TABLE productos(
     id_producto INT PRIMARY KEY AUTO_INCREMENT,
     nombre_producto VARCHAR(120) NOT NULL,
     precio_x_dia INT NOT NULL,
-    categoria_producto INT NOT NULL
+    categoria_producto INT NOT NULL,
+
+    FOREIGN KEY (categoria_producto) REFERENCES categorias(id_categoria)
 );
 
 
