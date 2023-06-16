@@ -26,27 +26,14 @@ Productos x Alquiler
  - Id producto
  - Id Alquiler detalle
  - Estado (Alquilado, devuelto)
-
-Devoluciones (entrada)
- - id devolucion
- - id empleado
- - fecha 
- - hora
-
-Detalle devoluciones (entrada detalle)
- - id registro
- - id producto
- - id obra
- - unidades devueltas = entrada Propia + entrada subalquilada
- - entrada Propia
- - entrada subalquilada
-
 Obras
  - id Obra
  - id constructora
  - ciudad
  - nombre
  - barrio
+
+ 
 
 Iventario
  - id inventario
@@ -68,3 +55,16 @@ Liquidaciones
  - metodo de pago
  - cuotas
  
+Devoluciones (entrada)
+ - id devolucion
+ - id empleado
+ - fecha 
+ - hora
+
+Detalle devoluciones (entrada detalle)
+ - id registro
+ - id producto
+ - id obra
+ - unidades devueltas = entrada Propia + entrada subalquilada
+ - entrada Propia
+ - entrada subalquilada

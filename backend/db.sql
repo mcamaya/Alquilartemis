@@ -79,3 +79,44 @@ INSERT INTO `constructoras` (`id_constructora`, `nombre_constructora`, `nit_cons
 INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`, `img_categoria`) VALUES ('1', 'Herramientas', 'Herramientas inalámbricas y para talleres. Diseño pionero, tecnología y alta durabilidad.', ''), ('2', 'Materia Prima', 'Compra en línea Materiales de Construcción, la Tienda con los mejores precios con envío gratis o retiro en tienda. ', ''), ('3', 'Acero', 'Encuentra los materiales que necesitas para tu proyecto de construcción. Contamos con una amplia variedad de productos de gran calidad.', '');
 
 INSERT INTO `productos` (`id_producto`, `nombre_producto`, `precio_x_dia`, `categoria_producto`) VALUES ('1', 'Serruchos', '50000', '1'), ('2', 'Bulto Cemento', '350000', '2'), ('3', 'Varillas', '120000', '3');
+
+
+CREATE TABLE entrada(
+    id_entrada INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_empleado INT NOT NULL,
+    fecha_entrada DATE NOT NULL,
+    hora_entrada VARCHAR(20)
+);
+
+CREATE TABLE entrada_detalle(
+    id_entrada_detalle INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_producto INT NOT NULL,
+    fk_id_obra INT NOT NULL,
+    unidades_entrada INT NOT NULL,
+    entrada_propia INT NOT NULL,
+    entrada_subalquilada INT NOT NULL
+);
+
+
+CREATE TABLE inventario(
+    id_inventario INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_producto INT NOT NULL,
+    cantidad_inicial INT NOT NULL,
+    cantidad_final INT NOT NULL,
+    cantidad_entradas INT NOT NULL,
+    cantidad_salidas INT NOT NULL,
+    tipo_operacion VARCHAR(40),
+    estado_inventario VARCHAR(40)
+);
+
+
+CREATE TABLE liquidaciones(
+    id_liquidaciones INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_salida INT NOT NULL,
+    fk_id_empleado INT NOT NULL,
+    subtotal_liquidacion INT NOT NULL,
+    iva INT NOT NULL,
+    total INT NOT NULL,
+    metodos_pago VARCHAR(60),
+    cuotas_pago VARCHAR(20)
+)
