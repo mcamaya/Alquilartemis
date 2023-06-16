@@ -1,5 +1,7 @@
 4 entidaddes: 
 
+Camila: 
+
 Alquiler (salida)
  - Id cliente
  - Id empleado
@@ -27,6 +29,16 @@ Productos x Alquiler
  - Id Alquiler detalle
  - Estado (Alquilado, devuelto)
 
+Obras
+ - id Obra
+ - id constructora
+ - ciudad
+ - nombre
+ - barrio
+
+
+Johan: 
+
 Devoluciones (entrada)
  - id devolucion
  - id empleado
@@ -41,12 +53,6 @@ Detalle devoluciones (entrada detalle)
  - entrada Propia
  - entrada subalquilada
 
-Obras
- - id Obra
- - id constructora
- - ciudad
- - nombre
- - barrio
 
 Iventario
  - id inventario

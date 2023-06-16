@@ -79,3 +79,50 @@ INSERT INTO `constructoras` (`id_constructora`, `nombre_constructora`, `nit_cons
 INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`, `img_categoria`) VALUES ('1', 'Herramientas', 'Herramientas inalámbricas y para talleres. Diseño pionero, tecnología y alta durabilidad.', ''), ('2', 'Materia Prima', 'Compra en línea Materiales de Construcción, la Tienda con los mejores precios con envío gratis o retiro en tienda. ', ''), ('3', 'Acero', 'Encuentra los materiales que necesitas para tu proyecto de construcción. Contamos con una amplia variedad de productos de gran calidad.', '');
 
 INSERT INTO `productos` (`id_producto`, `nombre_producto`, `precio_x_dia`, `categoria_producto`) VALUES ('1', 'Serruchos', '50000', '1'), ('2', 'Bulto Cemento', '350000', '2'), ('3', 'Varillas', '120000', '3');
+
+
+CREATE TABLE salidas (
+    id_salida INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_empleado INT NOT NULL,
+    fecha_salida DATE NOT NULL,
+    hora_salida VARCHAR(20) NOT NULL,
+    placa_salida VARCHAR (10) NOT NULL,
+    observaciones_salida VARCHAR (100)
+
+    FOREIGN KEY (fk_id_empleado) REFERENCES empleados(id_empleado)
+);
+
+CREATE TABLE obras(
+    id_obra INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_constructora INT NOT NULL,
+    ciudad_obra VARCHAR (50) NOT NULL,
+    barrio_obra VARCHAR (30) NOT NULL
+
+    FOREIGN KEY (fk_id_constructora) REFERENCES constructoras(id_constructora)
+);
+
+CREATE TABLE salida_detalle (
+    id_salida_detalle INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_obra INT NOT NULL,
+    fecha_salida_detalle DATE NOT NULL,
+    hora_salida_detalle VARCHAR(20) NOT NULL,
+    cantidad_salida INT NOT NULL,
+    cantidad_salida_propia INT NOT NULL,
+    cantidad_salida_subalquilada INT,
+    duracion_salida INT NOT NULL,
+    fecha_standby DATE NOT NULL,
+    precio_x_dia_salida INT NOT NULL,
+    precio_total_salida INT NOT NULL,
+
+    FOREIGN KEY (fk_id_obra) REFERENCES obras(id_obra)
+);
+
+CREATE TABLE productos_x_alquiler(
+    id_registro INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_producto INT NOT NULL,
+    fk_id_salida INT NOT NULL,
+    estado_registro VARCHAR (20),BIGINT
+
+    FOREIGN KEY (fk_id_producto) REFERENCES productos(id_producto),
+    FOREIGN KEY (fk_id_salida) REFERENCES salidas(id_salida)
+);
