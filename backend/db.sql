@@ -1,4 +1,5 @@
-CREATE DATABASE alquilartemis
+CREATE DATABASE alquilartemis;
+USE alquilartemis;
 
 CREATE TABLE constructoras(
     id_constructora INT PRIMARY KEY AUTO_INCREMENT,
@@ -28,6 +29,7 @@ CREATE TABLE productos(
     id_producto INT PRIMARY KEY AUTO_INCREMENT,
     nombre_producto VARCHAR(120) NOT NULL,
     precio_x_dia INT NOT NULL,
+    stock_producto INT,
     categoria_producto INT NOT NULL,
 
     FOREIGN KEY (categoria_producto) REFERENCES categorias(id_categoria)

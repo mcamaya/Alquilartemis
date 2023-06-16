@@ -1,0 +1,70 @@
+4 entidaddes: 
+
+Alquiler (salida)
+ - Id cliente
+ - Id empleado
+ - Fecha
+ - Hora, subtotal Peso
+ - Placa transporte
+ - Observaciones
+
+Detalle Alquiler (salida detalle)
+ - id alquiler
+ - Obra del cliente
+ - Fecha
+ - Hora
+ - Cantidad prd Salida = Cantidad Propia + Cantidad sub-alquilada
+ - Ctd. Propia- Ctd. sub-alquilada
+ - Duracion
+ - Fecha StandBy
+ - Precio x día alquiler (suma precios x dia productos)
+ - $ Valor Total = precio x Día * duracion
+ (disminuir stock)
+
+Productos x Alquiler
+ - Id id_registro
+ - Id producto
+ - Id Alquiler detalle
+ - Estado (Alquilado, devuelto)
+
+Devoluciones (entrada)
+ - id devolucion
+ - id empleado
+ - fecha 
+ - hora
+
+Detalle devoluciones (entrada detalle)
+ - id registro
+ - id producto
+ - id obra
+ - unidades devueltas = entrada Propia + entrada subalquilada
+ - entrada Propia
+ - entrada subalquilada
+
+Obras
+ - id Obra
+ - id constructora
+ - ciudad
+ - nombre
+ - barrio
+
+Iventario
+ - id inventario
+ - id producto
+ - Cantidad inicial (stock inicial)
+ - Cantidad final
+ - Cantida Salidas (Cuántas unidades salieron)
+ - Cantidad Entradas
+ - Tipo operacion: entrada, salida, compra, 
+ - Estado (dañado, bueno)
+
+Liquidaciones
+ - id cliente
+ - id alquiler
+ - id empleado
+ - subtotal = $ total -> alquiler
+ - iva
+ - $TOTAL
+ - metodo de pago
+ - cuotas
+ 
