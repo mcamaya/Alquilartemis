@@ -101,6 +101,12 @@
               </td>
             </tr>
           </tbody>
+          <tfoot>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tfoot>
         </table>
         <pre></pre>
 

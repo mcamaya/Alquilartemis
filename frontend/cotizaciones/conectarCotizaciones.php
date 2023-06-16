@@ -87,7 +87,7 @@ class Cotizacion extends Conectar{
     public function obtainAll_innerJoin(){
         try {
             $stm = $this->dbCnx->prepare("
-            SELECT cotizaciones.id_cotizacion, empleados.nombre_empleado, constructoras.nombre_constructora, cotizaciones.fecha_cotizacion, cotizaciones.hora_cotizacion, cotizaciones.dia_alquiler, cotizaciones.duracion_alquiler FROM cotizaciones
+            SELECT cotizaciones.id_cotizacion, empleados.nombre_empleado, constructoras.nombre_constructora, constructoras.nit_constructora, cotizaciones.fecha_cotizacion, cotizaciones.hora_cotizacion, cotizaciones.dia_alquiler, cotizaciones.duracion_alquiler FROM cotizaciones
             INNER JOIN empleados ON cotizaciones.fk_id_empleado = empleados.id_empleado
             INNER JOIN constructoras ON cotizaciones.fk_id_constructora = constructoras.id_constructora
             ");

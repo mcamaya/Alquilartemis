@@ -19,6 +19,9 @@ $registroPrd = $obtenerProductos->obtainProductos(); */
 var_dump($data);
 die(); */
 
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,11 +58,9 @@ die(); */
                     <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
-                          <th scope="col">Editar</th>
-                          <th scope="col">Borrar</th>
+                          <th scope="col">Cliente</th>
+                          <th scope="col">Empleado</th>
+                          <th scope="col">_____</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -68,6 +69,10 @@ die(); */
                           <?php 
                           $obtenerProductos->setId($coti['id_cotizacion']);
                           $registroPrd = $obtenerProductos->obtainProductos(); 
+
+                          /* mPDF */
+                          $enviar_productos = serialize($registroPrd);
+                          $enviar_productos = urlencode($enviar_productos);
                           ?>
 
                         <tr>
@@ -87,7 +92,7 @@ die(); */
                                       <strong>Día alquiler: </strong> <?=$coti['dia_alquiler']?> <br>
                                       <strong>Duración: </strong> <?=$coti['duracion_alquiler']?> <br>
                                       <button type="button" class="btn btn-danger mt-5 ms-1"><a href="borrar.php?id=<?=$coti['id_cotizacion']?>&req=delete">Borrar</a></button>
-                                      <button type="button" class="btn btn-warning mt-5 ms-1"><a href="../../mpdf/cotizacion.php">Generar PDF</a></button>
+                                      <button type="button" class="btn btn-warning mt-5 ms-1"><a href="../../mpdf/cotizacion.php?idCtz=<?=$coti['id_cotizacion']?>&nomEmp=<?=$coti['nombre_empleado']?>&nomCtrc=<?=$coti['nombre_constructora']?>&nitCtrc=<?=$coti['nit_constructora']?>&fechaCtz=<?=$coti['fecha_cotizacion']?>&horaCtz=<?=$coti['hora_cotizacion']?>&fechaAlq=<?=$coti['dia_alquiler']?>&duracion=<?=$coti['duracion_alquiler']?>&productos=<?=$enviar_productos?>">Generar PDF</a></button>
                                     </div>
                                     <div class="me-4">
                                       <table class="table">

@@ -1,40 +1,7 @@
 <?php
-require_once '../vendor/autoload.php';
+require_once 'cotizacion.php';
+?>
 
-$recibir_array = stripslashes($_GET['productos']);
-$recibir_array = urldecode($recibir_array);
-$matrizProductos = unserialize($recibir_array);
-/* echo "<pre>";
-var_dump($matrizProductos);
-echo "</pre>";
-die(); */
-
-$table = "";
-$precio_total = 0;
-
-foreach ($matrizProductos as $prd) {
-  $precio_total += $prd['precio_x_dia'];
-  $table .= "<tr>";
-  $table .= "<td style='text-align: center'>". $prd['fk_id_producto'] ."</td>";
-  $table .= "<td>". $prd['nombre_producto'] ."</td>";
-  $table .= "<td class='text-right'>$" . $prd['precio_x_dia'] ."</td>";
-  $table .= "<td class='text-right'></td>";
-  $table .= "</tr>";
-}
-
-
-$nomEmp = $_GET['nomEmp'];
-$nomCtrc = $_GET['nomCtrc'];
-$nitCtrc = $_GET['nitCtrc'];
-$idCtz = $_GET['idCtz'];
-$fechaCtz = $_GET['fechaCtz'];
-$horaCtz = $_GET['horaCtz'];
-$fechaAlq = $_GET['fechaAlq'];
-$duracion = $_GET['duracion'];
-
-$mpdf = new \Mpdf\Mpdf();
-
-$html = "
 <html>
 <head>
     <meta charset='UTF-8' />
@@ -118,16 +85,23 @@ $html = "
             </tr>
           </thead>
           <tbody>
-            $table
-          </tbody>
-          <tfoot>
             <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th style='text-align: center'>$$precio_total</th>
+              <td style='text-align: center'>1</td>
+              <td>Asesoramiento de inseminaci;n vacuna</td>
+              <td class='text-right'>28500</td>
+              <td class='text-right'>28500</td>
             </tr>
-          </tfoot>
+            <tr>
+              <td>&nbsp;</td>
+              <td> &nbsp;</td>
+              <td class='text-right'>&nbsp;</td>
+              <td class='text-right'>&nbsp;</td>
+            </tr>
+            <tr>
+              <td colspan='3' style='text-align: right'>Total Bs.</td>
+              <td style='text-align: right'><a href='#'> 28500 </a></td>
+            </tr>
+          </tbody>
         </table>
         <pre></pre>
 
@@ -151,10 +125,3 @@ $html = "
     ></script>
   </body>
   </html>
-";
-
-// Write some HTML code:
-$mpdf->WriteHTML($html);
-
-// Output a PDF file directly to the browser
-$mpdf->Output();
