@@ -1,5 +1,6 @@
 <?php
-require_once '../../backend/config/conexion.php';
+
+require_once ('../../../backend/config/conexion.php');
 
 class Cotizacion extends Conectar{
     private $id;

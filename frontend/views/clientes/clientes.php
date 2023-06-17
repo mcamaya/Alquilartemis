@@ -23,11 +23,12 @@ $allClientes = $clientes->obtainAll();
             <div style="color:white;" class="col-xl-3 col-4 bg-dark p-4 rounded">
                 <h2><strong>ALQUILARTEMIS</strong></h2>
                 <ul class="indices list-group p-xl-4 p-1">
-                    <li class="my-2 fs-5"><a href="../empleados/empleados.php"><i class="bi bi-person-fill mx-3"></i>Empleados</a></li>
-                    <li class="my-2 fs-5"><a href="../clientes/clientes.php"><i class="bi bi-cone-striped mx-3"></i> Clientes</a></li>
-                    <li class="my-2 fs-5"><a href="../productos/productos.php"><i class="bi bi-hammer mx-3"></i>Productos</a></li>
-                    <li class="my-2 fs-5"><a href="../categorias/categorias.php"><i class="bi bi-bookmarks-fill mx-3"></i>Categorias</a></li>
-                    <li class="my-2 fs-5"><a href="../cotizaciones/cotizaciones.php"><i class="bi bi-receipt-cutoff mx-3"></i>Cotizaciones</a></li>
+                <li class="my-2 fs-5"><a href="../empleados/empleados.php"><i class="bi bi-person-fill mx-3"></i>Empleados</a></li>
+                <li class="my-2 fs-5"><a href="../clientes/clientes.php"><i class="bi bi-cone-striped mx-3"></i> Clientes</a></li>
+                <li class="my-2 fs-5"><a href="../productos/productos.php"><i class="bi bi-hammer mx-3"></i>Productos</a></li>
+                <li class="my-2 fs-5"><a href="../categorias/categorias.php"><i class="bi bi-bookmarks-fill mx-3"></i>Categorias</a></li>
+                <li class="my-2 fs-5"><a href="../cotizaciones/cotizaciones.php"><i class="bi bi-receipt-cutoff mx-3"></i>Cotizaciones</a></li>
+                <li class="my-2 fs-5"><a href="../devoluciones/devoluciones.php"><i class="bi bi-arrow-return-right"></i>Devoluciones</a></li>
                 </ul>
             </div>
     
@@ -59,7 +60,6 @@ $allClientes = $clientes->obtainAll();
                             <td><?=$cliente['nombre_representante']?></td>
                             <td><?=$cliente['email_contacto']?></td>
                             <td><?=$cliente['telefono_contacto']?></td>
-                            <td><button type="button" class="btn btn-warning"><a href="editar.php?id=<?=$cliente['id_constructora']?>">Editar</a></button></td>
                             <td><button type="button" class="btn btn-danger"><a href="borrar.php?id=<?=$cliente['id_constructora']?>&req=delete">Borrar</a></button></td>
                           </tr>
                         
