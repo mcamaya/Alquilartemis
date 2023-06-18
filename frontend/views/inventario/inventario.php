@@ -1,8 +1,8 @@
 <?php
-require_once 'conectarDevoluciones.php';
-$data = new DevolucionManager();
-$allDevoluciones = $data->obtainAll();
-require_once 'agregar.php';
+require_once 'conectarInventario.php';
+$data = new InventarioManager();
+$allInventarios = $data->obtainAll();
+require_once './agregar.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,36 +34,39 @@ require_once 'agregar.php';
 
             <div class="col-8 bg-light h-100 rounded px-5 py-4 d-flex flex-column">
               <div class="d-flex justify-content-between mb-2">
-                <h2>Devoluciones</h2>
+                <h2>Inventario</h2>
                 <button type="button" class="btn btn-dark mb-4" data-bs-toggle="modal" data-bs-target="#registro">Añadir Nuevo Registro</button>
               </div>
               <table class="table table-striped">
                     <thead>
                         <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">ID Empleado</th>
-                          <th scope="col">Fecha</th>
-                          <th scope="col">Hora</th>
-                          <th scope="col">Editar</th>
-                          <th scope="col">Borrar</th>
+                          <th scope="col">ID Inventario</th>
+                          <th scope="col">ID Producto</th>
+                          <th scope="col">Cantidad Inicial</th>
+                          <th scope="col">Cantidad Final</th>
+                          <th scope="col">Cantidad Salidas</th>
+                          <th scope="col">Cantidad Entradas</th>
+                          <th scope="col">Tipo Operación</th>
+                          <th scope="col">Estado</th>
                         </tr>
                       </thead>
                       <tbody>
-                      <?php if (is_array($allDevoluciones)): ?>
-    <?php foreach ($allDevoluciones as $devolucion): ?>
+                      <?php if (is_array($allInventarios)): ?>
+    <?php foreach ($allInventarios as $inventario): ?>
         <tr>
-            <td><?= $devolucion['id'] ?></td>
-            <td><?= $devolucion['id_devolucion'] ?></td>
-            <td><?= $devolucion['id_empleado'] ?></td>
-            <td><?= $devolucion['fecha'] ?></td>
-            <td><?= $devolucion['hora'] ?></td>
-            <td><button type="button" class="btn btn-warning"><a href="detalle.php?id=<?= $devolucion['id'] ?>">Detalle</a></button></td>
-            <td><button type="button" class="btn btn-danger"><a href="borrar.php?id=<?= $devolucion['id'] ?>&req=delete">Borrar</a></button></td>
+            <td><?= $inventario['id_inventario'] ?></td>
+            <td><?= $inventario['id_producto'] ?></td>
+            <td><?= $inventario['cantidad_inicial'] ?></td>
+            <td><?= $inventario['cantidad_final'] ?></td>
+            <td><?= $inventario['cantidad_salidas'] ?></td>
+            <td><?= $inventario['cantidad_entradas'] ?></td>
+            <td><?= $inventario['tipo_operacion'] ?></td>
+            <td><?= $inventario['estado'] ?></td>
         </tr>
     <?php endforeach; ?>
 <?php else: ?>
     <tr>
-        <td colspan="7">No hay devoluciones disponibles.</td>
+        <td colspan="8">No hay registros disponibles en el inventario.</td>
     </tr>
 <?php endif; ?>
 
@@ -82,20 +85,36 @@ require_once 'agregar.php';
 
                         <form method="POST" action="agregar.php">
                           <div class="mb-3">
-                            <label for="idDevolucion" class="form-label">ID Devolución</label>
-                            <input type="number" class="form-control" id="idDevolucion" name="idDevolucion" required>
+                            <label for="idInventario" class="form-label">ID Inventario</label>
+                            <input type="number" class="form-control" id="idInventario" name="idInventario" required>
                           </div>
                           <div class="mb-3">
-                            <label for="idEmpleado" class="form-label">ID Empleado</label>
-                            <input type="number" class="form-control" id="idEmpleado" name="idEmpleado" required>
+                            <label for="idProducto" class="form-label">ID Producto</label>
+                            <input type="number" class="form-control" id="idProducto" name="idProducto" required>
                           </div>
                           <div class="mb-3">
-                            <label for="fecha" class="form-label">Fecha</label>
-                            <input type="date" class="form-control" id="fecha" name="fecha" required>
+                            <label for="cantidadInicial" class="form-label">Cantidad Inicial</label>
+                            <input type="number" class="form-control" id="cantidadInicial" name="cantidadInicial" required>
                           </div>
                           <div class="mb-3">
-                            <label for="hora" class="form-label">Hora</label>
-                            <input type="time" class="form-control" id="hora" name="hora" required>
+                            <label for="cantidadFinal" class="form-label">Cantidad Final</label>
+                            <input type="number" class="form-control" id="cantidadFinal" name="cantidadFinal" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="cantidadSalidas" class="form-label">Cantidad Salidas</label>
+                            <input type="number" class="form-control" id="cantidadSalidas" name="cantidadSalidas" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="cantidadEntradas" class="form-label">Cantidad Entradas</label>
+                            <input type="number" class="form-control" id="cantidadEntradas" name="cantidadEntradas" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="tipoOperacion" class="form-label">Tipo Operación</label>
+                            <input type="text" class="form-control" id="tipoOperacion" name="tipoOperacion" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="estado" class="form-label">Estado</label>
+                            <input type="text" class="form-control" id="estado" name="estado" required>
                           </div>
                           <button type="submit" class="btn btn-primary" name="registrar">Guardar</button>
                         </form>

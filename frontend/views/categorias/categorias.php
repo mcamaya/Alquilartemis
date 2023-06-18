@@ -26,7 +26,8 @@ $allCategorias = $data->obtainAll();
                 <li class="my-2 fs-5"><a href="../productos/productos.php"><i class="bi bi-hammer mx-3"></i>Productos</a></li>
                 <li class="my-2 fs-5"><a href="../categorias/categorias.php"><i class="bi bi-bookmarks-fill mx-3"></i>Categorias</a></li>
                 <li class="my-2 fs-5"><a href="../cotizaciones/cotizaciones.php"><i class="bi bi-receipt-cutoff mx-3"></i>Cotizaciones</a></li>
-                <li class="my-2 fs-5"><a href="../devoluciones/devoluciones.php"><i class="bi bi-arrow-return-right"></i>Devoluciones</a></li>
+                <li class="my-2 fs-5"><a href="../devoluciones/devoluciones.php"><i class="bi bi-arrow-return-right"></i> Devoluciones</a></li>
+                <li class="my-2 fs-5"><a href="../inventario/inventario.php"><i class="bi bi-arrow-return-right"></i> Inventario</a></li>
             </ul>
           </div>
     
