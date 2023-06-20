@@ -14,6 +14,10 @@ switch ($_GET['op']) {
     echo json_encode($datos);
     break;
 
+  case 'InsertData':
+    $salida->insertData($_POST['fk_id_empleado'], $_POST['fecha_salida'], $_POST['hora_salida'], $_POST['placa_salida'], $_POST['observaciones_salida']);
+    echo json_encode('Dato insertado con éxito');
+    break;
   
   default:
     # code...
