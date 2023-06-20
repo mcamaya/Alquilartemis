@@ -1,3 +1,14 @@
+<?php
+$url = 'http://localhost/SkylAb-108/Alquilartemis/backend/controllers/obras.php?op=GetAll';
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$output = json_decode(curl_exec($ch), true);
+
+var_dump($output);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,34 +43,26 @@
                     <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
+                          <th scope="col">Constructora</th>
+                          <th scope="col">Descripción</th>
+                          <th scope="col">Ubicación</th>
                           <th scope="col">Editar</th>
                           <th scope="col">Borrar</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                          <td><button type="button" class="btn btn-warning"><a href="#">Editar</a></button></td>
-                            <td><button type="button" class="btn btn-danger"><a href="#">Borrar</a></button></td>
+                        <?php foreach ($output as $obra): ?>
                           
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td colspan="2">Larry the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
+                          <tr>
+                            <td><?=$obra['id_obra']?></td>
+                            <td><?=$obra['nombre_constructora']?></td>
+                            <td><?=$obra['descripcion_obra']?></td>
+                            <td><?=$obra['ubicacion_obra']?></td>
+                            <td><button class="btn btn-warning"><a href="#">Editar</a></button></td>
+                            <td><button class="btn btn-danger"><a href="#">Borrar</a></button></td>
+                          </tr>
+
+                        <?php endforeach; ?>
                       </tbody>
                 </table>
 

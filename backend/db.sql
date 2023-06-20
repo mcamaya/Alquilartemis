@@ -95,8 +95,8 @@ CREATE TABLE salidas (
 CREATE TABLE obras(
     id_obra INT PRIMARY KEY AUTO_INCREMENT,
     fk_id_constructora INT NOT NULL,
-    ciudad_obra VARCHAR (50) NOT NULL,
-    barrio_obra VARCHAR (30) NOT NULL,
+    descripcion_obra VARCHAR (100) NOT NULL,
+    ubicacion_obra VARCHAR (30) NOT NULL,
 
     FOREIGN KEY (fk_id_constructora) REFERENCES constructoras(id_constructora)
 );
@@ -128,3 +128,10 @@ CREATE TABLE productos_x_alquiler(
     FOREIGN KEY (fk_id_producto) REFERENCES productos(id_producto),
     FOREIGN KEY (fk_id_salida) REFERENCES salidas(id_salida)
 );
+
+INSERT INTO `obras` (`id_obra`, `fk_id_constructora`, `descripcion_obra`, `ubicacion_obra`) VALUES 
+(1, 1, 'Conjunto residencial', 'Villavicencio, Meta'), 
+(2, 2, 'Escuela secundaria', 'Armenia, Quindío'), 
+(3, 3, 'Hospital psiquiátrico', 'Pasto, Nariño'), 
+(4, 1, 'Escuela primaria', 'Mesa de los Santos, Santander'), 
+(5, 3, 'Iglesia cristiana', 'Valledupar, Cesar');

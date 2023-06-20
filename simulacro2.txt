@@ -32,9 +32,8 @@ Productos x Alquiler
 Obras
  - id Obra
  - id constructora
- - ciudad
- - nombre
- - barrio
+ - descripcion_obra
+ - ubicación_obra
 
 
 Johan: 

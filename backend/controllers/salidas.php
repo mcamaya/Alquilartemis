@@ -20,6 +20,6 @@ switch ($_GET['op']) {
     break;
   
   default:
-    # code...
+    echo "<script>alert('Ha ocurrido un error');</script>";
     break;
 }
