@@ -1,22 +1,3 @@
-<?php
-require_once '../empleados/conectarEmpleados.php';
-$empleado = new Empleado();
-$allEmpleados = $empleado->obtainAll();
-
-$url = 'http://localhost/xampp/Alquilartemis/backend/controllers/salidas.php?op=GetAll';
-$curl = curl_init();
-
-curl_setopt($curl, CURLOPT_URL, $url);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-$output = json_decode(curl_exec($curl));
-
-/* echo "<pre>";
-var_dump($output);
-die() */
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,39 +25,41 @@ die() */
     
             <div class="col-8 bg-light h-100 rounded px-5 py-4 d-flex flex-column">
               <div class="d-flex justify-content-between mb-2">
-                <h2>Salidas</h2>
+                <h2>Obras</h2>
                 <button type="button" class="btn btn-dark mb-4" data-bs-toggle="modal" data-bs-target="#registro">Añadir Nuevo Registro</button>
               </div>
               <table class="table table-striped">
                     <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">Empleado</th>
-                          <th scope="col">Fecha</th>
-                          <th scope="col">Hora</th>
-                          <th scope="col">Placa</th>
-                          <th scope="col">Observaciones</th>
+                          <th scope="col">First</th>
+                          <th scope="col">Last</th>
+                          <th scope="col">Handle</th>
                           <th scope="col">Editar</th>
                           <th scope="col">Borrar</th>
                         </tr>
                       </thead>
                       <tbody>
-                        
-                      <?php foreach ($output as $salida): ?>
-                        
                         <tr>
-                          <td><?=$salida->id_salida?></td>
-                          <td><?=$salida->nombre_empleado?></td>
-                          <td><?=$salida->fecha_salida?></td>
-                          <td><?=$salida->hora_salida?></td>
-                          <td><?=$salida->placa_salida?></td>
-                          <td><?=$salida->observaciones_salida?></td>
-                          <td><button class="btn btn-warning"><a href="#">Editar</a></button></td>
-                          <td><button class="btn btn-danger"><a href="#">Borrar</a></button></td>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          <td><button type="button" class="btn btn-warning"><a href="#">Editar</a></button></td>
+                            <td><button type="button" class="btn btn-danger"><a href="#">Borrar</a></button></td>
+                          
                         </tr>
-
-                      <?php endforeach; ?>
-
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                          <td>@fat</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td colspan="2">Larry the Bird</td>
+                          <td>@twitter</td>
+                        </tr>
                       </tbody>
                 </table>
 
@@ -89,42 +72,27 @@ die() */
                       </div>
                       <div class="modal-body">
 
-                        <form method="post">
-
+                        <form method="post" action="">
                           <div class="mb-3">
-                            <label for="empleado" class="form-label">Empleado</label>
-                            <select class="form-control" name="fk_id_empleado" id="empleado" required>
-                              
-                            <?php foreach($allEmpleados as $emp):?>
-                                <option name="fk_id_empleado" value="<?=$emp['id_empleado'];?>"><?=$emp['nombre_empleado']?></option>
-                              <?php endforeach; ?>
-                            
-                            </select>
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                           </div>
-
                           <div class="mb-3">
-                            <label for="fechaSalida" class="form-label">Fecha del Alquiler</label>
-                            <input type="date" class="form-control" id="fechaSalida" name="fecha_salida">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
                           </div>
-
-                          <div class="mb-3">
-                            <label for="horaSalida" class="form-label">Hora de despacho</label>
-                            <input type="time" class="form-control" id="horaSalida" name="hora_salida">
+                          <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
                           </div>
-
-                          <div class="mb-3">
-                            <label for="placa" class="form-label">Placa del transporte</label>
-                            <input type="text" class="form-control" id="placa" name="placa_salida">
-                          </div>
-
-                          <div class="mb-3">
-                            <label for="observaciones" class="form-label">Observaciones</label>
-                            <input type="text" class="form-control" id="observaciones" name="observaciones_salida">
-                          </div>
-
-                          <button type="submit" class="btn btn-primary" name="registrar">Enviar</button>
+                          <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
-                        <?php require_once 'actions/agregar.php'; ?>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
                       </div>
                     </div>
                   </div>

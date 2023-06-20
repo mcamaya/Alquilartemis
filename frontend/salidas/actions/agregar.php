@@ -1,6 +1,6 @@
 <?php
 
-if($_POST){
+if(isset($_POST['registrar'])){
     $url = "http://localhost/xampp/Alquilartemis/backend/controllers/salidas.php?op=InsertData";
     $curl = curl_init();
 
@@ -10,5 +10,7 @@ if($_POST){
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
     $output = curl_exec($curl);
+    unset($_POST);
     curl_close($curl);
+
 }
